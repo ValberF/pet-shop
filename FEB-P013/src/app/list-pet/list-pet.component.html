@@ -1,0 +1,36 @@
+<div class="pets-container">
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Data de Nascimento</th>
+          <th>Tipo</th>
+          <th>Raça</th>
+          <th>Peso</th>
+          <th>Detalhes</th>
+          <th>Editar</th>
+          <th>Excluir</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="pet" *ngFor="let pet of pets">
+          <td>{{ pet.name }}</td>
+          <td>{{ pet.dateOfBirth | dateFormat }}</td>
+          <td>{{ pet.type[0].toUpperCase() + pet.type.slice(1) }}</td>
+          <td>{{ pet.breed[0].toUpperCase() + pet.breed.slice(1) }}</td>
+          <td>{{ pet.weight }}kg</td>
+          <td class="details" routerLink="/detalhes/{{ pet.id }}">
+            <i-feather name="file-minus"></i-feather>
+          </td>
+          <td class="edit" routerLink="/editar/{{ pet.id }}">
+            <i-feather name="edit"></i-feather>
+          </td>
+          <td class="remove" (click)="removePet(pet)">
+            <i-feather name="trash"></i-feather>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

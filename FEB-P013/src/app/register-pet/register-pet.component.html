@@ -1,0 +1,69 @@
+<div class="register">
+  <div class="form-container">
+    <h1>Cadastro de Atendimento</h1>
+    <form id="form" (ngSubmit)="addPet()" [formGroup]="form">
+      <div class="input-group">
+        <label for="name">
+          Nome do pet
+          <input id="name" formControlName="name" type="text" />
+          <span *ngIf="!form.get('name')?.valid && form.get('name')?.touched"
+            >Por favor, insira o nome do pet!</span
+          >
+        </label>
+        <label for="type">
+          Tipo de pet
+          <select id="type" formControlName="type" type="text">
+            <option value="Cachorro">Cachorro</option>
+            <option value="Gato">Gato</option>
+          </select>
+        </label>
+      </div>
+      <div class="input-group">
+        <label for="breed">
+          Raça
+          <input id="breed" formControlName="breed" type="text" />
+          <span *ngIf="!form.get('breed')?.valid && form.get('breed')?.touched"
+            >Por favor, insira a raça do pet!</span
+          >
+        </label>
+        <label for="weight">
+          Peso
+          <input id="weight" formControlName="weight" type="number" />
+          <span *ngIf="!form.get('weight')?.valid && form.get('weight')?.touched"
+            >Por favor, insira o peso do pet!</span
+          >
+        </label>
+      </div>
+      <div class="input-group">
+        <label for="dateOfBirth">
+          Data de nascimento
+          <input id="dateOfBirth" formControlName="dateOfBirth" type="date" />
+          <span *ngIf="!form.get('dateOfBirth')?.valid && form.get('dateOfBirth')?.touched"
+            >Por favor, insira a data de nascimento do pet!</span
+          >
+        </label>
+        <label for="medicines">
+          Remédios
+          <input id="medicines" formControlName="medicines" type="text" />
+          <span *ngIf="!form.get('medicines')?.valid && form.get('medicines')?.touched"
+            >Por favor, insira o(s) remédio(s) do pet!</span
+          >
+        </label>
+      </div>
+      <div class="input-group">
+        <label for="exams">
+          Exames
+          <input id="exams" formControlName="exams" type="text" />
+          <span *ngIf="!form.get('exams')?.valid && form.get('exams')?.touched"
+            >Por favor, insira o(s) exame(s) do pet!</span
+          >
+        </label>
+        <label for="infos">
+          Informações adicionais (Opcional)
+          <input id="infos" formControlName="infos" type="text" />
+        </label>
+      </div>
+      <button type="submit">Cadastrar</button>
+    </form>
+  </div>
+</div>

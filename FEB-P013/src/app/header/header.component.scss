@@ -1,0 +1,22 @@
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
+    padding: 35px 65px;
+
+    nav {
+        display: flex;
+        gap: 25px;
+
+        a {
+            text-decoration: inherit;
+            cursor: pointer;
+            color: #333;
+            font-weight: bold;
+            font-size: 26px;
+        }
+    }
+
+}

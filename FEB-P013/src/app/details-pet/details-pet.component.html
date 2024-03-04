@@ -1,0 +1,25 @@
+<div class="details">
+  <div class="details-container">
+    <img
+      *ngIf="pet.type.toLowerCase() === 'gato'"
+      src="../../assets/images/cat.png"
+      alt=""
+    />
+    <img
+      *ngIf="pet.type.toLowerCase() === 'cachorro'"
+      src="../../assets/images/dog.png"
+      alt=""
+    />
+    <div class="infos">
+      <h1>Detalhes do atendimento</h1>
+      <p>Nome: {{ pet.name }}</p>
+      <p>Tipo: {{ pet.type[0].toUpperCase() + pet.type.slice(1) }}</p>
+      <p>Raça: {{ pet.breed }}</p>
+      <p>Peso: {{ pet.weight }}</p>
+      <p>Data de nascimento: {{ pet.dateOfBirth | dateFormat }}</p>
+      <p>Remédios: {{ pet.medicines }}</p>
+      <p>Exames: {{ pet.exams }}</p>
+      <p *ngIf="pet.infos">Informações adicionais: {{ pet.infos }}</p>
+    </div>
+  </div>
+</div>
