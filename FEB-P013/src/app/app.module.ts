@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RegisterPetComponent } from './register-pet/register-pet.component';
 import { HomeComponent } from './home/home.component';
 import { ButtonComponent } from './button/button.component';
@@ -16,12 +16,16 @@ import { Trash, Edit, FileMinus } from 'angular-feather/icons';
 import { EditPetComponent } from './edit-pet/edit-pet.component';
 import { DetailsPetComponent } from './details-pet/details-pet.component';
 import { DateFormatPipe } from './date-format.pipe';
+import { LoginPetComponent } from './login-pet/login-pet.component';
+import { AutenticaInterceptor } from './autentica.interceptor';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'cadastro', component: RegisterPetComponent },
-  { path: 'editar/:id', component: EditPetComponent },
-  { path: 'atendimentos', component: ListPetComponent },
+  { path: 'cadastro', canActivate: [AuthGuard], component: RegisterPetComponent },
+  { path: 'editar/:id', canActivate: [AuthGuard], component: EditPetComponent },
+  { path: 'atendimentos', canActivate: [AuthGuard], component: ListPetComponent },
+  { path: 'login', component: LoginPetComponent },
   { path: 'detalhes/:id', component: DetailsPetComponent },
 ];
 
@@ -41,7 +45,8 @@ const icons = {
     ListPetComponent,
     EditPetComponent,
     DetailsPetComponent,
-    DateFormatPipe
+    DateFormatPipe,
+    LoginPetComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +57,7 @@ const icons = {
     RouterModule.forRoot(routes),
     FeatherModule.pick(icons)
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AutenticaInterceptor, multi: true }],
   bootstrap: [AppComponent],
   exports: [FeatherModule]
 })
